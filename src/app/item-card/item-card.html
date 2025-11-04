@@ -1,5 +1,10 @@
-<div class="card">
-  <img [src]="destination.imageUrl" [alt]="destination.name">
-  <h3>{{ destination.name }} ({{ destination.country }})</h3>
+<div class="card" [ngClass]="{ 'highlight': destination.country === 'Україна' }">
+  <img [src]="destination.imageUrl" [alt]="destination.name" />
+
+  <h3>{{ destination.name }} <small>({{ destination.country }})</small></h3>
   <p>{{ destination.description }}</p>
+
+  <p *ngIf="destination.country === 'Україна'" class="badge">
+    🌟 Рідна країна!
+  </p>
 </div>
