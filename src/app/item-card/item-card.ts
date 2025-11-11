@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TravelDestination } from '../shared/models/travel-destination.model';
 
@@ -11,4 +11,12 @@ import { TravelDestination } from '../shared/models/travel-destination.model';
 })
 export class ItemCardComponent {
   @Input() destination!: TravelDestination;
+
+  // Подія вибору
+  @Output() selectDestination = new EventEmitter<TravelDestination>();
+
+  // Метод, який спрацьовує при кліку
+  onSelect(): void {
+    this.selectDestination.emit(this.destination);
+  }
 }
