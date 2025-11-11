@@ -1,1 +1,42 @@
-/* You can add global styles to this file, and also import other style files */
+/* Загальні стилі компонента макета */
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #fafafa;
+  color: #333;
+  margin: 0;
+}
+
+/* Хедер */
+header {
+  background-color: #1976d2;
+  color: white;
+  text-align: center;
+  padding: 1.2rem 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+header h1 {
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+/* Основний блок */
+main {
+  flex: 1;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Футер */
+footer {
+  background-color: #eeeeee;
+  text-align: center;
+  padding: 0.8rem 0;
+  font-size: 0.95rem;
+  color: #555;
+  border-top: 1px solid #ddd;
+}
