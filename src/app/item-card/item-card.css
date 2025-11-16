@@ -19,13 +19,11 @@
   border-radius: 6px;
   margin-bottom: 0.6rem;
 }
-
 .card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px); /* Залишаємо збільшення */
   box-shadow: 0 6px 14px rgba(0,0,0,0.15);
-}
-
-.highlight {
+  
+  
   border: 2px solid #1976d2;
   background-color: #e8f0ff;
 }
@@ -38,4 +36,22 @@
   padding: 0.2rem 0.6rem;
   border-radius: 12px;
   font-size: 0.85rem;
+}
+
+.details-link {
+  display: inline-block;
+  background-color: #1976d2;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.details-link:hover {
+  background-color: #135a9e;
 }

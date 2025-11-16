@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { ItemsListComponent } from '../items-list/items-list';
+import { RouterOutlet } from '@angular/router'; 
+
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.html',
   styleUrls: ['./layout.css'],
   standalone: true,
-  imports: [ItemsListComponent]
+  imports: [RouterOutlet] 
 })
 export class LayoutComponent {
   appTitle = 'Подорожі';
