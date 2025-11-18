@@ -1,10 +1,11 @@
-<div class="card">
+<div class="card" appHighlight highlightColor="#ffa500">
   <img [src]="destination.imageUrl" [alt]="destination.name" class="card-img" />
 
   <h3>
     {{ destination.name }} <small>({{ destination.country }})</small>
   </h3>
-  <p>{{ destination.description }}</p>
+
+  <p>{{ destination.description | truncate : 30 }}</p>
 
   <p *ngIf="destination.country === 'Україна'" class="badge">🌟 Рідна країна!</p>
 
