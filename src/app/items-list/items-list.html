@@ -8,5 +8,5 @@
 </div>
 
 <div class="items-container">
-  <app-item-card *ngFor="let place of destinations" [destination]="place"> </app-item-card>
+  <app-item-card *ngFor="let place of items$ | async" [destination]="place"> </app-item-card>
 </div>
