@@ -51,6 +51,24 @@ export class DataService {
     const destination = this.destinations.find(d => d.id === id);
     return of(destination);
   }
+  // НОВИЙ МЕТОД: Додавання елемента
+  addItem(newItem: any): void {
+    // 1. Генеруємо новий ID (знаходимо максимальний і додаємо 1)
+    const maxId = this.destinations.length > 0 
+      ? Math.max(...this.destinations.map(d => d.id)) 
+      : 0;
+    
+    const itemToAdd = {
+      ...newItem,
+      id: maxId + 1
+    };
+
+    // 2. Додаємо в масив
+    this.destinations.push(itemToAdd);
+
+    // 3. Оновлюємо підписників (BehaviorSubject)
+    this.itemsSubject.next(this.destinations);
+  }
   // Реактивна фільтрація
   filterItems(searchText: string) {
     const filtered = this.destinations.filter(d =>

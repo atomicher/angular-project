@@ -1,0 +1,63 @@
+<div class="form-container">
+  <h2>Додати нову подорож</h2>
+
+  <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Місто</label>
+      <input id="name" type="text" formControlName="name" placeholder="Наприклад: Лондон" />
+
+      <div class="error" *ngIf="itemForm.get('name')?.invalid && itemForm.get('name')?.touched">
+        <span *ngIf="itemForm.get('name')?.errors?.['required']">Це поле обов'язкове.</span>
+        <span *ngIf="itemForm.get('name')?.errors?.['minlength']">Мінімум 3 символи.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="country">Країна</label>
+      <input
+        id="country"
+        type="text"
+        formControlName="country"
+        placeholder="Наприклад: Великобританія"
+      />
+      <div
+        class="error"
+        *ngIf="itemForm.get('country')?.invalid && itemForm.get('country')?.touched"
+      >
+        Це поле обов'язкове.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Короткий опис</label>
+      <textarea id="description" formControlName="description" rows="3"></textarea>
+      <div
+        class="error"
+        *ngIf="itemForm.get('description')?.invalid && itemForm.get('description')?.touched"
+      >
+        Введіть короткий опис (до 100 символів).
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="imageUrl">Посилання на фото</label>
+      <input
+        id="imageUrl"
+        type="text"
+        formControlName="imageUrl"
+        placeholder="https://example.com/photo.jpg"
+      />
+      <div
+        class="error"
+        *ngIf="itemForm.get('imageUrl')?.invalid && itemForm.get('imageUrl')?.touched"
+      >
+        Вставте посилання на зображення.
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="submit" [disabled]="itemForm.invalid">Створити</button>
+      <a routerLink="/items" class="cancel">Скасувати</a>
+    </div>
+  </form>
+</div>

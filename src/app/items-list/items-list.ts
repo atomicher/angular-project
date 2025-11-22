@@ -5,13 +5,14 @@ import { Observable } from 'rxjs'; // Імпортуємо Observable
 import { ItemCardComponent } from '../item-card/item-card';
 import { TravelDestination } from '../shared/models/travel-destination.model';
 import { DataService } from '../services/data.service';
+import { RouterLink } from '@angular/router'; // 1. Імпортуйте RouterLink
 
 @Component({
   selector: 'app-items-list',
   standalone: true,
   templateUrl: './items-list.html',
   styleUrls: ['./items-list.css'],
-  imports: [CommonModule, FormsModule, ItemCardComponent]
+  imports: [CommonModule, FormsModule, ItemCardComponent, RouterLink]
 })
 export class ItemsListComponent implements OnInit {
 
