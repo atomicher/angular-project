@@ -2,8 +2,8 @@
   <input
     type="text"
     placeholder="Пошук..."
-    [(ngModel)]="searchTerm"
-    (ngModelChange)="onSearchChange()"
+    [ngModel]="searchTerm"
+    (ngModelChange)="onSearchChange($event)"
   />
   <a routerLink="/items/add" class="add-button">+ Додати</a>
 </div>

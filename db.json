@@ -1,0 +1,35 @@
+{
+  "destinations": [
+    {
+      "id": "1",
+      "name": "Париж",
+      "country": "Франція",
+      "description": "Місто кохання.",
+      "imageUrl": "assets/paris.jpg",
+      "detailedDescription": "Париж - це світова столиця моди, мистецтва та гастрономії. Відвідайте Ейфелеву вежу."
+    },
+    {
+      "id": "2",
+      "name": "Київ",
+      "country": "Україна",
+      "description": "Столиця України.",
+      "imageUrl": "assets/kyiv.jpg",
+      "detailedDescription": "Київ - одне з найстаріших міст Європи, розташоване на берегах Дніпра."
+    },
+    {
+      "id": "3",
+      "name": "Токіо",
+      "country": "Японія",
+      "description": "Місто майбутнього.",
+      "imageUrl": "assets/tokyo.jpg",
+      "detailedDescription": "Токіо поєднує ультрасучасні технології та хмарочоси з давніми храмами."
+    },
+    {
+      "id": "1764114499447",
+      "name": "Варшава",
+      "country": "Польша",
+      "description": "Столиця Польщі.",
+      "imageUrl": "https://i0.wp.com/mandry.club/wp-content/uploads/2019/02/Varshav.jpg?ssl=1"
+    }
+  ]
+}
