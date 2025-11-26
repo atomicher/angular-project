@@ -30,9 +30,9 @@ export class ItemsListComponent implements OnInit {
     this.dataService.getItems().subscribe(); 
   }
 
-  onSearchChange() {
-    this.dataService.filterItems(this.searchTerm);
+onSearchChange(searchValue: string) {
+    this.searchTerm = searchValue; // Оновлюємо локальну змінну
+    this.dataService.filterItems(searchValue); // Відправляємо нове значення в сервіс
   }
-  
   // ngOnDestroy видалено, бо AsyncPipe відпишеться сам!
 }

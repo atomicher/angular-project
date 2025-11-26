@@ -1,5 +1,7 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators'; // Додано map
 import { TravelDestination } from '../shared/models/travel-destination.model';
 
 @Injectable({
@@ -7,73 +9,69 @@ import { TravelDestination } from '../shared/models/travel-destination.model';
 })
 export class DataService {
 
-  private destinations: TravelDestination[] = [
-    {
-      id: 1,
-      name: 'Париж',
-      country: 'Франція',
-      description: 'Місто кохання.', //
-      imageUrl: 'assets/paris.jpg',
-      // Додаємо детальний опис
-      detailedDescription: 'Париж - це світова столиця моди, мистецтва та гастрономії. Відвідайте Ейфелеву вежу, прогуляйтеся по Монмартру та насолодіться шедеврами Лувру.'
-    },
-    {
-      id: 2,
-      name: 'Київ',
-      country: 'Україна',
-      description: 'Столиця України.', //
-      imageUrl: 'assets/kyiv.jpg',
-      // Додаємо детальний опис
-      detailedDescription: 'Київ - одне з найстаріших міст Європи, розташоване на берегах Дніпра. Відомий своєю архітектурою, золотоверхими соборами та багатою історією.'
-    },
-    {
-      id: 3,
-      name: 'Токіо',
-      country: 'Японія',
-      description: 'Місто майбутнього.', //
-      imageUrl: 'assets/tokyo.jpg',
-      detailedDescription: 'Токіо поєднує ультрасучасні технології та хмарочоси з давніми традиційними храмами. Відчуйте неймовірний ритм життя на перехресті Сібуя.'
-    }
-  ];
+  private http = inject(HttpClient);
+  private endpoint = 'destinations';
 
-  // BehaviorSubject
-  private itemsSubject = new BehaviorSubject<TravelDestination[]>(this.destinations);
-
-  // Публічний Observable
+  private itemsSubject = new BehaviorSubject<TravelDestination[]>([]);
   items$: Observable<TravelDestination[]> = this.itemsSubject.asObservable();
 
-  // getItems повертає Observable
+  loadDestinations(): void {
+    this.http.get<TravelDestination[]>(this.endpoint)
+      .pipe(catchError(this.handleError))
+      .subscribe(data => {
+        this.itemsSubject.next(data);
+      });
+  }
+
   getItems(): Observable<TravelDestination[]> {
-    return of(this.destinations);
+    this.loadDestinations();
+    return this.items$;
   }
 
   getDestinationById(id: number): Observable<TravelDestination | undefined> {
-    const destination = this.destinations.find(d => d.id === id);
-    return of(destination);
+    return this.http.get<TravelDestination>(`${this.endpoint}/${id}`)
+      .pipe(catchError(this.handleError));
   }
-  // НОВИЙ МЕТОД: Додавання елемента
+
   addItem(newItem: any): void {
-    // 1. Генеруємо новий ID (знаходимо максимальний і додаємо 1)
-    const maxId = this.destinations.length > 0 
-      ? Math.max(...this.destinations.map(d => d.id)) 
-      : 0;
-    
-    const itemToAdd = {
-      ...newItem,
-      id: maxId + 1
+    const itemToAdd = { 
+      ...newItem, 
+      id: String(Date.now()) 
     };
 
-    // 2. Додаємо в масив
-    this.destinations.push(itemToAdd);
-
-    // 3. Оновлюємо підписників (BehaviorSubject)
-    this.itemsSubject.next(this.destinations);
+    this.http.post<TravelDestination>(this.endpoint, itemToAdd)
+      .pipe(catchError(this.handleError))
+      .subscribe(() => {
+        this.loadDestinations();
+      });
   }
-  // Реактивна фільтрація
-  filterItems(searchText: string) {
-    const filtered = this.destinations.filter(d =>
-      d.name.toLowerCase().includes(searchText.toLowerCase())
-    );
-    this.itemsSubject.next(filtered); // оновлення поточного стану
+
+  // ОНОВЛЕНИЙ МЕТОД ФІЛЬТРАЦІЇ
+  filterItems(searchText: string): void {
+    let params = new HttpParams();
+
+    if (searchText) {
+      params = params.set('name_like', searchText);
+    }
+
+    this.http.get<TravelDestination[]>(this.endpoint, { params })
+      .pipe(
+        // ДОДАНО: Примусова фільтрація на клієнті, якщо сервер повернув зайве
+        map(items => {
+          if (!searchText) return items;
+          return items.filter(d => 
+            d.name.toLowerCase().includes(searchText.toLowerCase())
+          );
+        }),
+        catchError(this.handleError)
+      )
+      .subscribe(data => {
+        this.itemsSubject.next(data);
+      });
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    console.error('API Error:', error);
+    return throwError(() => new Error('Щось пішло не так, спробуйте пізніше.'));
   }
 }
