@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs'; // Імпортуємо Observable
 import { ItemCardComponent } from '../item-card/item-card';
 import { TravelDestination } from '../shared/models/travel-destination.model';
-import { DataService } from '../services/data.service';
+import { DataService } from '../core/services/data.service';
 import { RouterLink } from '@angular/router'; // 1. Імпортуйте RouterLink
 
 @Component({
