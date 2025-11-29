@@ -1,10 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
+import { provideRouter } from '@angular/router'; // Додаємо провайдер роутера
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
+      // Оскільки App використовує <router-outlet>, йому потрібен провайдер роутера в тестах
+      providers: [provideRouter([])] 
     }).compileComponents();
   });
 
@@ -14,10 +17,5 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(App);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, angular-project');
-  });
+  // Тест 'should render title' видалено, бо в App більше немає заголовка
 });
