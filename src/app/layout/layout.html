@@ -1,5 +1,15 @@
 <header>
-  <h1>{{ appTitle }}</h1>
+  <div class="header-content">
+    <h1>{{ appTitle }}</h1>
+
+    <div class="auth-controls">
+      <a *ngIf="!authService.isAuthenticated()" routerLink="/login" class="login-link">Вхід</a>
+
+      <button *ngIf="authService.isAuthenticated()" (click)="logout()" class="logout-btn">
+        Вийти
+      </button>
+    </div>
+  </div>
 </header>
 
 <main>
@@ -7,5 +17,5 @@
 </main>
 
 <footer>
-  <p>Подорожі</p>
+  <p>Подорожі © 2025</p>
 </footer>

@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Subscription, switchMap, map } from 'rxjs';
-import { DataService } from '../services/data.service';
+import { DataService } from '../core/services/data.service';
 import { TravelDestination } from '../shared/models/travel-destination.model';
 
 @Component({

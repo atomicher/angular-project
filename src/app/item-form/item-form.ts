@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { DataService } from '../services/data.service';
+import { DataService } from '../core/services/data.service';
 
 @Component({
   selector: 'app-item-form',

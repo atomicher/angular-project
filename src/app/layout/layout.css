@@ -1,0 +1,76 @@
+/* Загальні стилі компонента макета */
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #fafafa;
+  color: #333;
+  margin: 0;
+}
+
+/* Хедер */
+header {
+  background-color: #1976d2;
+  color: white;
+  padding: 0 2rem; /* Відступи з боків */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Контейнер для вирівнювання вмісту хедера */
+.header-content {
+  display: flex;
+  justify-content: space-between; /* Розсуває елементи по краях */
+  align-items: center;            /* Центрує по вертикалі */
+  height: 64px;                   /* Фіксована висота хедера */
+  max-width: 1200px;              /* Обмеження ширини для великих екранів */
+  margin: 0 auto;                 /* Центрування контейнера */
+}
+
+header h1 {
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+/* Стилі для блоку авторизації */
+.auth-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Спільні стилі для посилання та кнопки */
+.login-link, .logout-btn {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  background-color: rgba(255, 255, 255, 0.1); /* Напівпрозорий фон */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-link:hover, .logout-btn:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Основний блок */
+main {
+  flex: 1;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Футер */
+footer {
+  background-color: #eeeeee;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  color: #666;
+  border-top: 1px solid #e0e0e0;
+}

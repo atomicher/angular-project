@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators'; // Додано map
-import { TravelDestination } from '../shared/models/travel-destination.model';
+import { TravelDestination } from '../../shared/models/travel-destination.model';
 
 @Injectable({
   providedIn: 'root'

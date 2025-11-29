@@ -6,6 +6,7 @@ import { routes } from './app.routes';
 import { baseUrlInterceptor } from './core/interceptors/base-url.interceptor';
 // 1. Імпорт нового інтерцептора
 import { errorInterceptor } from './core/interceptors/error.interceptor'; 
+import { authInterceptor } from './core/interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,6 +15,7 @@ export const appConfig: ApplicationConfig = {
     // 2. Додаємо errorInterceptor в масив
     provideHttpClient(withInterceptors([
       baseUrlInterceptor, 
+      authInterceptor, 
       errorInterceptor 
     ]))
   ]
